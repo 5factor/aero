@@ -1,11 +1,9 @@
 const { RichEmbed } = require("discord.js");
 const { Colors } = require("../config");
-const Raven = require("raven");
 const database = require("../util/database");
 
 module.exports.run = async (client, message, args, { guild, error }) => {
 	try {
-
 		const newRole = message.guild.roles.find(c => c.name === args[0]);
 		if (!newRole) return message.channel.send(
 			new RichEmbed().setTitle("Modrole").setColor(Colors.FAILED).setDescription("Incorrect usage. You must include a valid role name.").setFooter(message.author.tag, message.author.displayAvatarURL)
@@ -21,7 +19,6 @@ module.exports.run = async (client, message, args, { guild, error }) => {
 		message.channel.send(adminEmbed);
 	}
 	catch (e) {
-		Raven.captureException(e);
 		error(e.stack);
 	}
 };

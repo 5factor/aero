@@ -1,7 +1,5 @@
 const { Client, Collection } = require("discord.js");
-const { Logging, Colors } = require("./config");
 const { config } = require("dotenv");
-const Raven = require("raven");
 const fs = require("fs");
 const database = require("./util/database");
 const client = new Client();
@@ -9,8 +7,6 @@ const client = new Client();
 config({
 	path: __dirname + "/.env",
 });
-
-Raven.config(config.RAVEN_URL).install();
 
 database
 	.connect()
@@ -46,8 +42,4 @@ fs.readdir("./commands/", (err, files) => {
 			for(const alias of props.data.aliases)
 				client.aliases.set(alias, name);
 	});
-});
-
-process.on("unhandledRejection", async error => {
-	Raven.captureException(error);
 });
