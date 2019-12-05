@@ -13,4 +13,4 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        script: git pull https://github.com/UndecidedSource/aero
+        script: git pull origin master
