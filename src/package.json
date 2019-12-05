@@ -1,0 +1,29 @@
+{
+  "name": "robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "aki-api": "^3.2.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "invite-regex": "^1.0.1",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.3",
+    "random-puppy": "^1.1.0"
+  }
+}
