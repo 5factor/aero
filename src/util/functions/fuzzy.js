@@ -16,11 +16,3 @@ module.exports = (needle, haystack) => {
 	}
 	return true;
 };
-
-/*
-Example Usage:
-
-const Fuzzy = require('../Fuzzy');
-message.guild.members.find(m => Fuzzy(args[0], m.user.tag.toLowerCase() + "~>" + m.id))
-
-*/
