@@ -15,10 +15,11 @@ database.guilds.create = async (id, {
 	modrole = 0,
 	adminrole = 0,
 	leveling = [],
+	economy = [],
 	wordblacklist = [],
 	commandchannels = [],
 } = {}) => {
-	const data = { premium, prefix, linkFilter, modrole, adminrole, wordblacklist, commandchannels, wordblacklistactive, leveling, levelingactive };
+	const data = { premium, prefix, linkFilter, modrole, adminrole, wordblacklist, commandchannels, wordblacklistactive, leveling, economy, levelingactive };
 	const existing = await database.collection("guilds").get(id);
 	if (existing) return existing;
 	await database.collection("guilds").insert(id, data);

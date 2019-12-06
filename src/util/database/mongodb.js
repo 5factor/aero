@@ -6,8 +6,8 @@ try {
 	({ MongoClient } = require('mongodb'));
 }
 
-const version = '1.5.4';
-const author = 'Zytekaron#0572 (272659147974115328)';
+const version = '1.5.5';
+const author = 'Zytekaron#0572 (272659147974115328); UndecidedFactor#6819';
 
 const mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
