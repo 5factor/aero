@@ -21,6 +21,6 @@ module.exports.data = {
 	name: 'vote',
 	description: 'Initiate a vote',
 	type: 'fun',
-	usage: ['!vote <subject>|<description>'],
+	usage: ['!vote <subject> <description>'],
 	aliases: null,
 };
