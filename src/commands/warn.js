@@ -11,6 +11,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		
 		let points = args[1];
 		if (!points) points = 0
+		if (isNaN(points)) points = 0;
 
 		let reason = args.slice(2).join(' ');
 		if (!reason) reason = 'None';
