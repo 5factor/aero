@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			warnEmbed.addField(moment(w.date).format("MMMM Do YYYY, h:mm:ss a"), `Moderator: ${format(w.mod)}\nPoints: ${w.points || 0}\nReason: ${w.reason}`);
 			totalPoints = totalPoints + w.points;
 		});
-		warnEmbed.addField("Total Points", totalPoints);
+		warnEmbed.addField("Total Points", parseInt(totalPoints));
 
 		message.channel.send(warnEmbed);
 	}
