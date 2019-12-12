@@ -8,8 +8,11 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		if (!target) return message.channel.send(
 			new RichEmbed().setTitle('Warn').setColor(Colors.FAILED).setDescription('Incorrect usage. You must mention a valid user.').setFooter(message.author.tag, message.author.displayAvatarURL)
 		);
+		
+		let points = args[1];
+		if (!points) points = 0
 
-		let reason = args.slice(1).join(' ');
+		let reason = args.slice(2).join(' ');
 		if (!reason) reason = 'None';
 
 		const warnings = new Map(guild.warnings);
@@ -22,7 +25,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		const warnEmbed = new RichEmbed()
 			.setTitle(`Warned ${target.tag}`)
 			.setColor(Colors.SUCCESS)
-			.setDescription(`**Moderator**: ${message.author.tag}\n**Target**: ${target.tag}\n**Reason**: ${reason}\n**Action**: Warn user`)
+			.setDescription(`**Moderator**: ${message.author.tag}\n**Target**: ${target.tag}\n**Reason**: ${reason}\n**Points**: ${points}\n**Action**: Warn user`)
 			.setFooter(message.author.tag, message.author.displayAvatarURL)
 			.setTimestamp();
 
@@ -37,6 +40,6 @@ module.exports.data = {
 	name: 'warn',
 	description: 'Gives the mentioned user a warning',
 	type: 'mod',
-	usage: ['!warn <user> [reason]'],
+	usage: ['!warn <user> [points] [reason]'],
 	aliases: null,
 };

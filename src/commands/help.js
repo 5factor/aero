@@ -6,7 +6,7 @@ module.exports.run = (client, message, args, { guild }) => {
 
 	const noargs = new RichEmbed()
 		.setTitle("Help Menu")
-		.setDescription("<> = required, [] = optional\nCheck the [Documentation](https://docs.myaerobot.com) for usage information")
+		.setDescription("<> = required, [] = optional\Run a!help <command> to view usage")
 		.setColor(Colors.DEFAULT)
 		.setFooter(message.author.tag, message.author.displayAvatarURL);
 
@@ -39,9 +39,6 @@ module.exports.run = (client, message, args, { guild }) => {
 		noargs.addField(
 			"Moderation", commands.filter(c => c.data.type === "mod").map(c => `${c.data.name} ➜ \`${c.data.usage[0]}\`\n`).join("").replace(/!/g, prefix)
 		);
-		// noargs.addField(
-		//	"Economy", commands.filter(c => c.data.type === "eco").map(c => `\`${c.data.usage[0]}\` ➜ ${c.data.description}\n`).join("").replace(/!/g, prefix)
-		// );
 		noargs.addField(
 			"Fun", commands.filter(c => c.data.type === "fun").map(c => `${c.data.name} ➜ \`${c.data.usage[0]}\`\n`).join("").replace(/!/g, prefix)
 		);
@@ -60,7 +57,7 @@ module.exports.run = (client, message, args, { guild }) => {
 
 module.exports.data = {
 	name: "help",
-	description: "Sends this embed",
+	description: "Sends an embed containing command information",
 	type: "misc",
 	usage: ["!help"],
 	aliases: ["commands"],
