@@ -32,7 +32,6 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			totalPoints = totalPoints + w.points;
 		);
 		warnEmbed.addField("Total Points", totalPoints);
-		);
 
 		message.channel.send(warnEmbed);
 	}
