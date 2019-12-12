@@ -28,7 +28,8 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			.setTimestamp();
 
 		let totalPoints = 0;
-		arr.forEach(w => warnEmbed.addField(moment(w.date).format("MMMM Do YYYY, h:mm:ss a"), `Moderator: ${format(w.mod)}\nPoints: ${w.points || 0}\nReason: ${w.reason}`);
+		arr.forEach(w =>
+			warnEmbed.addField(moment(w.date).format("MMMM Do YYYY, h:mm:ss a"), `Moderator: ${format(w.mod)}\nPoints: ${w.points || 0}\nReason: ${w.reason}`)
 			totalPoints = totalPoints + w.points;
 		);
 		warnEmbed.addField("Total Points", totalPoints);
