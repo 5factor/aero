@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		const warnings = new Map(guild.warnings);
 		const arr = warnings.get(target.id) || [];
 
-		arr.push({ mod: message.author.id, reason, date: new Date() });
+		arr.push({ mod: message.author.id, reason, date: new Date(), points });
 		warnings.set(target.id, arr);
 		database.guilds.update(message.guild.id, { warnings: Array.from(warnings) });
 
