@@ -6,7 +6,7 @@ module.exports.run = (client, message, args, { guild }) => {
 
 	const noargs = new RichEmbed()
 		.setTitle("Help Menu")
-		.setDescription("<> = required, [] = optional\Run a!help <command> to view usage")
+		.setDescription("<> = required, [] = optional\nRun a!help <command> to view usage")
 		.setColor(Colors.DEFAULT)
 		.setFooter(message.author.tag, message.author.displayAvatarURL);
 
