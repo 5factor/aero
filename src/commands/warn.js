@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			new RichEmbed().setTitle('Warn').setColor(Colors.FAILED).setDescription('Incorrect usage. You must mention a valid user.').setFooter(message.author.tag, message.author.displayAvatarURL)
 		);
 		
-		let points = args[1];
+		let points = parseInt(args[1]);
 		if (!points) points = 0
 		if (isNaN(points)) points = 0;
 
