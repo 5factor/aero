@@ -11,14 +11,22 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 	try {
 		const target = message.mentions.users.first();
 		if (!target) return message.channel.send(
-			new RichEmbed().setTitle("Warnings").setColor(Colors.FAILED).setDescription("Incorrect usage. You must mention a valid user.").setFooter(message.author.tag, message.author.displayAvatarURL)
+			new RichEmbed()
+				.setTitle("Warnings")
+				.setColor(Colors.FAILED)
+				.setDescription("Incorrect usage. You must mention a valid user.")
+				.setFooter(message.author.tag, message.author.displayAvatarURL),
 		);
 
 		const warnings = new Map(guild.warnings);
 
 		const arr = warnings.get(target.id) || [];
 		if (!arr.length) return message.channel.send(
-			new RichEmbed().setTitle("Warnings").setColor(Colors.FAILED).setDescription("The mentioned user has no warnings.").setFooter(message.author.tag, message.author.displayAvatarURL)
+			new RichEmbed()
+				.setTitle("Warnings")
+				.setColor(Colors.FAILED)
+				.setDescription("The mentioned user has no warnings.")
+				.setFooter(message.author.tag, message.author.displayAvatarURL),
 		);
 
 		const warnEmbed = new RichEmbed()
@@ -27,7 +35,12 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			.setFooter(message.author.tag, message.author.displayAvatarURL)
 			.setTimestamp();
 
-		arr.forEach(w => warnEmbed.addField(moment(w.date).format("MMMM Do YYYY, h:mm:ss a"), `Moderator: ${format(w.mod)}\nPoints: ${w.points || 0}\nReason: ${w.reason}`));
+		let totalPoints = 0;
+		arr.forEach(w => {
+			warnEmbed.addField(moment(w.date).format("MMMM Do YYYY, h:mm:ss a"), `Moderator: ${format(w.mod)}\nPoints: ${w.points || 0}\nReason: ${w.reason}`);
+			totalPoints = parseInt(totalPoints) + parseInt(w.points);
+		});
+		warnEmbed.addField("Total Points", parseInt(totalPoints));
 
 		message.channel.send(warnEmbed);
 	}

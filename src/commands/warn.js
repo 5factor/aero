@@ -1,4 +1,5 @@
 const { RichEmbed } = require('discord.js');
+const { userWarn } = require('../util/packages/Functions');
 const { Colors } = require('../config');
 const database = require('../util/database');
 
@@ -9,8 +10,9 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 			new RichEmbed().setTitle('Warn').setColor(Colors.FAILED).setDescription('Incorrect usage. You must mention a valid user.').setFooter(message.author.tag, message.author.displayAvatarURL)
 		);
 		
-		let points = args[1];
+		let points = parseInt(args[1]);
 		if (!points) points = 0
+		if (isNaN(points)) points = 0;
 
 		let reason = args.slice(2).join(' ');
 		if (!reason) reason = 'None';
@@ -18,9 +20,10 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		const warnings = new Map(guild.warnings);
 		const arr = warnings.get(target.id) || [];
 
-		arr.push({ mod: message.author.id, reason, date: new Date() });
+		arr.push({ mod: message.author.id, reason, date: new Date(), points });
 		warnings.set(target.id, arr);
 		database.guilds.update(message.guild.id, { warnings: Array.from(warnings) });
+		userWarn(user, guild);
 
 		const warnEmbed = new RichEmbed()
 			.setTitle(`Warned ${target.tag}`)
