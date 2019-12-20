@@ -1,4 +1,5 @@
 const { RichEmbed } = require('discord.js');
+const { userWarn } = require('../util/packages/Functions');
 const { Colors } = require('../config');
 const database = require('../util/database');
 
@@ -22,6 +23,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
 		arr.push({ mod: message.author.id, reason, date: new Date(), points });
 		warnings.set(target.id, arr);
 		database.guilds.update(message.guild.id, { warnings: Array.from(warnings) });
+		userWarn(user, guild);
 
 		const warnEmbed = new RichEmbed()
 			.setTitle(`Warned ${target.tag}`)
