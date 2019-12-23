@@ -4,7 +4,7 @@ const database = require('../util/database');
 
 module.exports.run = async (client, message, args, { guild, error }) => {
 	try {
-		const allowed = ["kick", "ban", "softban"]
+		const allowed = ["kick", "ban"]
 
 		const pointAmount = parseInt(args[0]);
 		const modAction = args[1];
@@ -36,6 +36,6 @@ module.exports.data = {
 	name: 'setmoderation',
 	description: 'Set an automated moderation action for when a user hits a certain amount of points',
 	type: 'mod',
-	usage: ['!setmoderation <pointsAmount> <kick/ban/softban>'],
+	usage: ['!setmoderation <pointsAmount> <kick/ban>'],
 	aliases: null,
 };
