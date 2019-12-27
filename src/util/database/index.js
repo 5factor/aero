@@ -44,7 +44,7 @@ database.guilds.delete = async (id) => {
 database.guilds.updateMany = async (data) => {
     return await database.collection("guilds").updateMany(
         {},
-        { $set: data },
+        { set: data },
     );
 };
 
