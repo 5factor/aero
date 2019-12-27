@@ -1,5 +1,5 @@
 const { RichEmbed } = require("discord.js");
-const { database } = require("../util/database/index");
+const { database } = require("../util/database");
 const { inspect } = require("util");
 const { Access, Colors } = require("../config");
 
