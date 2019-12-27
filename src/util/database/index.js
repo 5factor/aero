@@ -41,11 +41,11 @@ database.guilds.delete = async (id) => {
     return await database.collection("guilds").delete(id);
 };
 
-database.guilds.updateMany = async (thing) => {
+database.guilds.updateMany = async (key, value) => {
     return await database.collection("guilds").updateMany(
         {},
         { $set: {
-            thing,
+            key, value,
         } },
     );
 };
