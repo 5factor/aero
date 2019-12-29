@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
         warnings.set(target.id, arr);
 
         database.guilds.update(message.guild.id, { warnings: Array.from(warnings) });
-        userWarn(message, user, guild);
+        userWarn(message, database.users.fetch(target.id), guild);
 
         const warnEmbed = new RichEmbed()
             .setTitle(`Warned ${target.tag}`)
