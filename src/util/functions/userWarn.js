@@ -1,7 +1,6 @@
 const nil = require("./nil");
 
-module.exports = async (message, userId, guild) => {
-    const { author: userObj, guild: guildObj } = message;
+module.exports = async (client, member, userId, guild, guildName) => {
     const moderation = new Map(guild.moderation) || [];
     const warnings = new Map(guild.warnings) || [];
 
@@ -12,16 +11,16 @@ module.exports = async (message, userId, guild) => {
     console.log(points);
 
     if (points >= moderation.kick) {
-        await userObj.send(`You have been kicked from ${guildObj.name} for recieving ${moderation.kick} warnings!`)
+        await client.users.get(userId).send(`You have been kicked from ${guildName} for recieving ${moderation.kick} warnings!`)
             .catch(nil);
-        await guildObj.kick(userId, `Recieved ${moderation.kick} warnings.`)
+        await member.kick(`Recieved ${moderation.kick} warnings.`)
             .catch(nil);
     }
 
     if (points >= moderation.ban) {
-        await userObj.send(`You have been banned from ${guildObj.name} for recieving ${moderation.ban} warnings!`)
+        await client.users.get(userId).send(`You have been banned from ${guildName} for recieving ${moderation.ban} warnings!`)
             .catch(nil);
-        await guildObj.ban(userId, `Recieved ${moderation.ban} warnings.`)
+        await member.ban(userId, `Recieved ${moderation.ban} warnings.`)
             .catch(nil);
     }
 };

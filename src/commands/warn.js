@@ -13,6 +13,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
                 .setDescription("Incorrect usage. You must mention a valid user.")
                 .setFooter(message.author.tag, message.author.displayAvatarURL)
         );
+        let targetMember = message.guild.member(target);
 
         let points = isNaN(args[1]) ? 0 : parseInt(args[1]);
         if (!points < 0) points = 0;
@@ -33,7 +34,7 @@ module.exports.run = async (client, message, args, { guild, user, error }) => {
         warnings.set(target.id, arr);
 
         database.guilds.update(message.guild.id, { warnings: Array.from(warnings) });
-        userWarn(message, target.id, guild);
+        userWarn(client, targetMember, target.id, guild, message.guild.name, message.guild.id);
 
         const warnEmbed = new RichEmbed()
             .setTitle(`Warned ${target.tag}`)
