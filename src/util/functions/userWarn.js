@@ -9,6 +9,7 @@ module.exports = async (client, member, userId, guild, guildName) => {
 
     const points = warnArr.reduce((acc, cur) => acc + cur.points, 0);
     console.log(points);
+    console.log(moderation)
 
     if (points >= moderation.kick) {
         await client.users.get(userId).send(`You have been kicked from ${guildName} for recieving ${moderation.kick} warnings!`)
