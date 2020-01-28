@@ -7,6 +7,8 @@ module.exports.run = async (client, message, args) => {
     if (!Access.DEVELOPERS.includes(message.author.id)) return;
 
     let ev = args.join(" ");
+    
+    if (ev === "client.token" || ev === "client.env.token" || ev === "token") return;
 
     let silent = false;
     let hide = false;
