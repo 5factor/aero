@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args, { guild, error }) => {
         );
 
         const newArr = Array.from(guild.moderation);
-        newArr[modAction] = pointAmount;
+        newArr[modAction.toLowerCase()] = pointAmount;
         database.guilds.update(message.guild.id, { moderation: newArr });
 
         const filterEmbed = new RichEmbed()
