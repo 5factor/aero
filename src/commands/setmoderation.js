@@ -13,9 +13,9 @@ module.exports.run = async (client, message, args, { guild, error }) => {
             new RichEmbed().setTitle("Automated Moderation").setColor(Colors.FAILED).setDescription("Incorrect usage. You must include a valid amount of points and a valid action (kick, ban, softban).").setFooter(message.author.tag, message.author.displayAvatarURL),
         );
 
-        const newArr = Array.from(guild.moderation);
+        const newArr = new Map(guild.moderation);
         newArr[modAction.toLowerCase()] = pointAmount;
-        database.guilds.update(message.guild.id, { moderation: newArr });
+        database.guilds.update(message.guild.id, { moderation: Array.from(newArr) });
 
         const filterEmbed = new RichEmbed()
             .setTitle("Automated Moderation")
