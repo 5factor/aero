@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args, { guild, error }) => {
 
         const modMap = new Map(guild.moderation);
         modMap.set(modAction.toLowerCase(), pointAmount);
-        database.guilds.update(message.guild.id, { moderation: Array.from(newArr) });
+        database.guilds.update(message.guild.id, { moderation: Array.from(modMap) });
 
         const filterEmbed = new RichEmbed()
             .setTitle("Automated Moderation")
