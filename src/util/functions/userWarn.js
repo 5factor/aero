@@ -1,8 +1,8 @@
 const nil = require("./nil");
 
 module.exports = async (client, member, userId, guild, guildName) => {
-    const moderation = new Map(guild.moderation) || [];
-    const warnings = new Map(guild.warnings) || [];
+    const moderation = new Map(guild.moderation);
+    const warnings = new Map(guild.warnings);
 
     const warnArr = warnings.get(userId) || [];
     if (!warnArr.length) return;
