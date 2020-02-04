@@ -1,11 +1,9 @@
 const { RichEmbed } = require("discord.js");
-const { ensureLeveling, fuzzy } = require("../util/packages/Functions");
+const { fuzzy } = require("../util/packages/Functions");
 const { Colors } = require("../config");
 
 module.exports.run = async (client, message, args, { guild, user, error }) => {
     try {
-        if (guild.levelingactive == false) return;
-
         let targetMember = message.mentions.members.first();
 
         if (!targetMember) {
