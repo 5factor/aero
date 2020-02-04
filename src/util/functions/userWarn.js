@@ -11,16 +11,16 @@ module.exports = async (client, member, userId, guild, guildName) => {
     console.log(points);
     console.log(moderation)
 
-    if (points >= moderation.kick) {
-        console.log("just testing this")
+    if (points >= moderation.get("kick")) {
+        console.log("just testing this");
         await client.users.get(userId).send(`You have been kicked from ${guildName} for recieving ${moderation.kick} warnings!`)
             .catch(e => console.log(e));
         await member.kick(`Recieved ${moderation.kick} warnings.`)
             .catch(e => { console.log(e); });
     }
 
-    if (points >= moderation.ban) {
-        console.log("just testing this also")
+    if (points >= moderation.get("ban")) {
+        console.log("just testing this also");
         await client.users.get(userId).send(`You have been banned from ${guildName} for recieving ${moderation.ban} warnings!`)
             .catch(e => console.log(e));
         await member.ban(userId, `Recieved ${moderation.ban} warnings.`)
