@@ -3,9 +3,9 @@ module.exports = {
         "NAME": "Aero",
     },
     Logging: {
-        "LOG_CHANNEL": "652530142698143765",
-        "RESTART_CHANNEL": "652530142698143765",
-        "SUPPORT": "652530153540288525",
+        "LOG_CHANNEL": null,
+        "RESTART_CHANNEL": null,
+        "SUPPORT": null,
     },
     Access: {
         "DEVELOPERS": ["609167831950557348"],
