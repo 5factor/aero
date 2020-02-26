@@ -4,7 +4,7 @@ const { runCommand, initDB, filterString, ensureLeveling, updateLeveling } = req
 
 module.exports = async (client, message) => {
 	if (message.author.bot) return;
-	if (!message.guild) return client.channels.get(Logging.SUPPORT).send(`**${message.author.tag} (${message.author.id}):**\n${message.content}`);
+	if (!message.guild) return;
 
 	let [user, guild] = await initDB(message);
 	filterString(message, guild);
@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
 		const embed = new RichEmbed()
 			.setTitle("An error has occured")
 			.addField("Information", text);
-		return client.channels.get(Logging.LOG_CHANNEL).send(embed);
+		return message.channel.send(embed);
 	}
 
 	runCommand(client, message, args, { guild, user, error });
