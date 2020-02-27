@@ -16,4 +16,4 @@ jobs:
         script: |
           cd aero
           git pull origin master
-          pm2 restart index
+          pm2 restart 0
